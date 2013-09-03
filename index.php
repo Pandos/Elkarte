@@ -22,6 +22,8 @@
 $forum_version = 'ElkArte 1.0 Alpha';
 
 // First things first, but not necessarily in that order.
+$_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+
 define('ELK', 1);
 
 if (function_exists('set_magic_quotes_runtime'))
