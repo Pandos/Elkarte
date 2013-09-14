@@ -22,7 +22,17 @@
 $forum_version = 'ElkArte 1.0 Alpha';
 
 // First things first, but not necessarily in that order.
-$_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+//Test if it is a shared client
+if (!empty($_SERVER['HTTP_CLIENT_IP'])){
+  $ip=$_SERVER['HTTP_CLIENT_IP'];
+//Is it a proxy ?
+}elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+  $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+}else{
+  $ip=$_SERVER['REMOTE_ADDR'];
+}
+//Translate IP with PHP to an integer
+$ip = ip2long($ip);
 
 define('ELK', 1);
 
